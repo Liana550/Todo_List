@@ -11,14 +11,12 @@ todoListRouter.get("/", (req, res) => {
 });
 todoListRouter.post("/", (req, res) => {
   const todo = req.body;
-  todo.id = Math.random() * new Date();
+  todo.id = Date.now() + "_" + Math.floor(Math.random() * 10000);
   todoArray.dataList.push(todo);
   res.send(todo);
 });
 todoListRouter.put("/:id", (req, res) => {
   const todoId = req.params;
-  // console.log(todoId, "id");
-  // console.log(req.body, "body");
   todoArray.dataList.map((el) =>
     el.id === req.body.id ? (el.type = req.body.type) : ""
   );
